@@ -5,3 +5,85 @@ input[type="search"] {
     width: 104%;
     border-radius: 12px;
 }
+
+.main-div
+{
+    height: 350px;
+    width: 430px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+
+}
+
+.main-div .sub-div
+{
+    position: relative;
+    height: 300px;
+    width: 100%;
+    border-radius: 10px;
+    border: 2px dashed darkgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.sub-div.active
+{
+    border: none;
+    text-indent: -10000px
+}
+.sub-div .main-image
+{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sub-div .main-image img
+{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    text-indent: -10000px
+}
+
+.sub-div .upload-icon
+{
+    font-size: 100px;
+}
+
+.sub-div .main-content-text
+{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+button#custom-upload-btn {
+    width: 100%;
+    border: none;
+    padding: 10px;
+    border-radius: 12px;
+    font-weight: 800;
+    color: white;
+    background: black;
+    cursor: pointer;
+}
+
+/*div#cancel-btn {*/
+/*    position: absolute;*/
+/*    left: 63%;*/
+/*    top: %;*/
+/*    font-size: 30px;*/
+/*}*/
+
+button#custom-upload-btn:focus
+{
+    outline: none;
+}

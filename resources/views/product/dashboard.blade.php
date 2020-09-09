@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+    <a href="{{route('product.create')}}" class="btn btn-success">Create New</a>
     <table class="table table-striped">
         <thead>
            <tr>
@@ -20,7 +21,7 @@
                 <td>{{$product->product_price}}</td>
                 <td>
                     @foreach($product->properties as $item)
-                        <b>{{ $item->key }}</b>: {{ $item->value }}<br />
+                        <b>{{ $item->key }}</b>: {{ $item->value}}<br />
                     @endforeach
                 </td>
                 <td>

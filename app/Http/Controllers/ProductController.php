@@ -19,6 +19,7 @@ class ProductController extends Controller
     {
 
         $products = Product::all();
+
 //        foreach ($products as $test)
 //        {
 //            foreach ($test->properties as $item)
@@ -87,9 +88,9 @@ class ProductController extends Controller
     {
 
         $validatedData = $request->validate([
-            'product_id' => 'required',
+            'product_id' => 'required |unique:products',
             'product_name' => 'required',
-            'product_photo' => 'required | image | max:1999' ,
+            'product_photo' => 'nullable | image | max:1999' ,
             'product_price' => 'required',
             'properties' => 'required',
         ]);
@@ -139,7 +140,9 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+         $product = Product::find($id);
+
+        return view('product.edit')->with('product',$product);
     }
 
     /**
@@ -151,7 +154,38 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'product_id' => 'required',
+            'product_name' => 'required',
+            'product_photo' => 'nullable | image | max:1999' ,
+            'product_price' => 'required',
+            'properties' => 'required',
+        ]);
+
+        if($request->hasFile('product_photo'))
+        {
+            $filenameWithExt = $request->file('product_photo')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt,PATHINFO_FILENAME);
+            $extension = $request->file('product_photo')->getClientOriginalExtension();
+            $fileNametoStore = $filename."_".time().'.'.$extension;
+            $path = $request->file('product_photo')->storeAs('public/product_photo',$fileNametoStore);
+        }
+
+
+//        return $request->all();
+
+        $product = Product::find($id);
+        $product->product_id = $request->input('product_id');
+        if($request->hasFile('product_photo'))
+        {
+            $product->product_photo = $fileNametoStore;
+        }
+
+        $product->product_name = $request->input('product_name');
+        $product->product_price = $request->input('product_price');
+        $product->properties = $request->input('properties');
+        $product->save();
+        return redirect()->route('product.index');
     }
 
     /**
