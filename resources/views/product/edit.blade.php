@@ -36,6 +36,9 @@
         </div>
         <div class="form-group">
             <div class="properties">
+                @if (count($product->properties) >0)
+
+
                 @foreach($product->properties as $item)
                     <div id="properties-id-{{$loop->iteration}}" class="row align-items-end">
                         <div class="col-md-5">
@@ -52,6 +55,7 @@
 
                     </div>
                 @endforeach
+                @endif
             </div>
             <button class="btn btn-primary add-btn mt-2 float-right" type="button">Add Properties</button>
         </div>
@@ -115,7 +119,8 @@
     </script>
 
     <script>
-        let i = 0;
+        let properties = JSON.parse("{{ json_encode(count($product->properties)) }}");
+        let i = properties;
         $(document).on('click','.add-btn',function (){
             i++;
             let properties = '<div id="properties-id-'+i+'" class="row align-items-end">' +

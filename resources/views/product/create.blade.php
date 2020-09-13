@@ -68,7 +68,6 @@
 
     defaultBtn.addEventListener("change",function (){
         const file = this.files[0];
-
         if(file)
         {
             const reader = new FileReader();
@@ -77,7 +76,6 @@
 
                 image.src = result;
                 sub.classList.add("active");
-
             }
             reader.readAsDataURL(file)
         }

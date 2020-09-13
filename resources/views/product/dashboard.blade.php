@@ -28,12 +28,15 @@
 
                   {!! Form::open(['route' => ['product.destroy', $product->id]],['method' => 'post']) !!}
                         {!! Form::hidden('_method','DELETE') !!}
-                       {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
+                       {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm','id'=>'delete']) !!}
                         <a href="/product/{{$product->id}}/edit" class="btn btn-primary btn-sm">Update</a>
                     {!! Form::close() !!}
                 </td>
             </tr>
             </tbody>
+
         @endforeach
     </table>
+
 @endsection
+

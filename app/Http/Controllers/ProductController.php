@@ -142,6 +142,7 @@ class ProductController extends Controller
     {
          $product = Product::find($id);
 
+
         return view('product.edit')->with('product',$product);
     }
 
