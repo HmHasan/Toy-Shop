@@ -41,3 +41,8 @@ $('#update_form').submit(function (e){
 
 // Modal Open
 
+$('.addAttr').click(function() {
+    let id = $(this).data('id');
+    $('#id').val(id);
+} );
+

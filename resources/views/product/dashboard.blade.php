@@ -1,7 +1,9 @@
 @extends('layouts.app')
 @section('content')
+    <div class="pt-2"></div>
     <a href="{{route('product.create')}}" class="btn btn-success">Create New</a>
-    <table class="table table-striped">
+    <div class="pb-2"></div>
+    <table class="table table-striped table-success">
         <thead>
            <tr>
                <th>Product Photo</th>
@@ -29,7 +31,7 @@
 
                         {!! Form::open(['route' => ['product.destroy', $product->id]],['method' => 'post']) !!}
                         {!! Form::hidden('_method','DELETE') !!}
-                        {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm','id'=>'delete']) !!}
+                        <button type="submit" class="btn btn-danger btn-sm" value="Delete" onclick="return confirm('Are You Sure About This?')">Delete</button>
                         {{--                    <form action="" id="delete_form" data-route = "{{url('product/'.$product->id)}}">--}}
                         {{--                        <input type="hidden" name="_token" value="{{csrf_token()}}">--}}
                         {{--                        <button type="submit" class="btn btn-danger btn-sm float-right" id="deleteButton">Delete</button>--}}
@@ -51,7 +53,7 @@
 
 
     <!-- Modal -->
-    <div class="modal bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">

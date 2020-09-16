@@ -62,8 +62,7 @@
         <div class="form-group">
             <br>
             <br>
-            <br>
-            <br>
+
             <hr>
             <input type="submit" class="btn btn-info" name="" id="submit" value="Update">
         </div>
