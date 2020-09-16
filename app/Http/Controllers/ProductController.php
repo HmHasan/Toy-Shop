@@ -155,6 +155,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $validatedData = $request->validate([
             'product_id' => 'required',
             'product_name' => 'required',
@@ -163,8 +164,13 @@ class ProductController extends Controller
             'properties' => 'required',
         ]);
 
+        $product = Product::find($id);
+
         if($request->hasFile('product_photo'))
         {
+            Storage::Delete('/public/product_photo/'.$product->product_photo);
+
+
             $filenameWithExt = $request->file('product_photo')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt,PATHINFO_FILENAME);
             $extension = $request->file('product_photo')->getClientOriginalExtension();
@@ -175,16 +181,20 @@ class ProductController extends Controller
 
 //        return $request->all();
 
-        $product = Product::find($id);
+
         $product->product_id = $request->input('product_id');
+
         if($request->hasFile('product_photo'))
         {
             $product->product_photo = $fileNametoStore;
+
+
         }
 
         $product->product_name = $request->input('product_name');
         $product->product_price = $request->input('product_price');
         $product->properties = $request->input('properties');
+
         $product->save();
         return redirect()->route('product.index');
     }
@@ -193,7 +203,7 @@ class ProductController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
@@ -202,9 +212,12 @@ class ProductController extends Controller
         if($product->product_photo !='noimage.jpg')
         {
             Storage::Delete('/public/product_photo/'.$product->product_photo);
+
+
         }
 
         $product->delete();
-        return redirect(route('product.index'));
+        return redirect()->route('product.index');
+
     }
 }

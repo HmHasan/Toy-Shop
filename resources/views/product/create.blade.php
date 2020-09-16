@@ -10,7 +10,7 @@
                    <div class="main-div ">
                        <div class="sub-div">
                            <div class="main-image">
-                               <img src="" alt="">
+                               <img src="" alt="" class = "photo">
                            </div>
                            <div class="main-content">
                                <div class="upload-icon"><i class="fa fa-cloud-upload"></i></div>

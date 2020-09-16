@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('include.include')
 @section('content')
-    <form action="{{url('product/'.$product->id)}}" enctype="multipart/form-data" method="POST">
+    <form action="{{url('product/'.$product->id)}}" enctype="multipart/form-data" method="POST" data-route = "{{url('product/'.$product->id)}}" id="update_form">
         <input type="hidden" name="_token" value="{{csrf_token()}}">
         <input type="hidden" name="_method" value="PUT">
         <div class="row  d-flex justify-content-center">
@@ -8,7 +8,7 @@
                 <div class="main-div ">
                     <div class="sub-div">
                         <div class="main-image">
-                            <img src="{{'/storage/product_photo/'.$product->product_photo}}" alt="">
+                            <img src="{{'/storage/product_photo/'.$product->product_photo}}" alt="" class="photo">
                         </div>
                         <div class="main-content">
                             <div class="upload-icon"><i class="fa fa-cloud-upload"></i></div>
@@ -60,11 +60,15 @@
             <button class="btn btn-primary add-btn mt-2 float-right" type="button">Add Properties</button>
         </div>
         <div class="form-group">
-            <input type="submit" class="btn btn-success" name="" id="submit" value="submit">
+            <br>
+            <br>
+            <br>
+            <br>
+            <hr>
+            <input type="submit" class="btn btn-info" name="" id="submit" value="Update">
         </div>
 
     </form>
-
 @endsection
 
 @section('script')
@@ -73,7 +77,8 @@
         const defaultBtn = document.querySelector("#default-upload-btn");
         const sub = document.querySelector(".sub-div");
         const customBtn = document.querySelector("#custom-upload-btn");
-        const image = document.querySelector("img")
+        const image = document.querySelector(".photo")
+        console.log(image);
         function defaultBtnActive()
         {
             defaultBtn.click();
@@ -100,23 +105,23 @@
     </script>
     {{--    Script For Image Preview End--}}
 
-    <script>
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
+{{--    <script>--}}
+{{--        function readURL(input) {--}}
+{{--            if (input.files && input.files[0]) {--}}
+{{--                var reader = new FileReader();--}}
 
-                reader.onload = function(e) {
-                    $('#blah').attr('src', e.target.result);
-                }
+{{--                reader.onload = function(e) {--}}
+{{--                    $('#blah').attr('src', e.target.result);--}}
+{{--                }--}}
 
-                reader.readAsDataURL(input.files[0]); // convert to base64 string
-            }
-        }
+{{--                reader.readAsDataURL(input.files[0]); // convert to base64 string--}}
+{{--            }--}}
+{{--        }--}}
 
-        $("#product_po").change(function() {
-            readURL(this);
-        });
-    </script>
+{{--        $("#product_po").change(function() {--}}
+{{--            readURL(this);--}}
+{{--        });--}}
+{{--    </script>--}}
 
     <script>
         let properties = JSON.parse("{{ json_encode(count($product->properties)) }}");
