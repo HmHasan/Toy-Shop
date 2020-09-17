@@ -22,26 +22,31 @@
                    </div>
                    <input type="file" name="product_photo" id="default-upload-btn" hidden>
                    <button onclick="defaultBtnActive()"  id="custom-upload-btn" type="button">Choose a Photo</button>
+                   <small class="form-text text-danger text-center">{{$errors->first('product_photo')}}</small>
                </div>
            </div>
 
 {{--     Image Upload End   --}}
-        <div class="form-group">
-            <label for="product_name">Product ID</label>
-            <input type="number" name="product_id" id="product_id" class="form-control">
-        </div>
+{{--        <div class="form-group">--}}
+{{--            <label for="product_name">Product ID</label>--}}
+{{--            <input type="number" name="product_id" id="product_id" class="form-control" value="{{old('product_id')}}">--}}
+{{--            <small class="form-text text-danger">{{$errors->first('product_id')}}</small>--}}
+{{--        </div>--}}
         <div class="form-group">
             <label for="product_name">Product Name</label>
-            <input type="text" name="product_name" id="product_name" class="form-control">
+            <input type="text" name="product_name" id="product_name" class="form-control" value="{{old('product_name')}}">
+            <small class="form-text text-danger">{{$errors->first('product_name')}}</small>
         </div>
         <div class="form-group">
             <label for="product_price">Price</label>
-            <input type="number" name="product_price" id="product_price" class="form-control">
+            <input type="text" name="product_price" id="product_price" class="form-control" value="{{old('product_price')}}">
+            <small class="form-text text-danger">{{$errors->first('product_price')}}</small>
         </div>
         <div class="form-group">
             <div class="properties">
 
             </div>
+
         </div>
         <button type="button" class="btn btn-primary add-btn float-right">Add Properties</button>
 
@@ -95,7 +100,9 @@
             '<div class="col-md-5"><label>Properties Details</label>'+
             '<input type="text" class="form-control" name="properties['+i+'][value]"></div>'+
             '<div class="col-md-2">'+
-            '<button type="button" class="btn btn-danger btn-sm remove-btn form-control" data-id="'+i+'">Remove</button></div>'
+            '<button type="button" class="btn btn-danger btn-sm remove-btn form-control" data-id="'+i+'">Remove</button></div>';
+
+
          $('.properties').append(properties);
         $(document).on('click', '.remove-btn', function (){
             let button_id = $(this).data('id');

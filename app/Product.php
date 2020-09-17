@@ -31,7 +31,10 @@ class Product extends Model
      * @var mixed
      */
     private $product_id;
-
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
     public function getPropertiesAttribute($value)
    {
 //        $this->attributes['properties'] = json_decode($value,true);
@@ -43,9 +46,12 @@ class Product extends Model
     {
         $properties = [];
 
-        foreach ($value as $array_item) {
-            if (!is_null($array_item['key'])) {
-                $properties[] = $array_item;
+        if ($value) {
+
+            foreach ($value as $array_item) {
+                if (!is_null($array_item['key'])) {
+                    $properties[] = $array_item;
+                }
             }
         }
         $this->attributes['properties'] = json_encode((array) $properties);

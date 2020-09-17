@@ -1,10 +1,10 @@
 
 $('#update_form').submit(function (e){
     e.preventDefault();
-    let form = $(this);
-    let data = $('#update_form').serializeArray();
-    let test = new FormData;
-    jQuery.each()
+    // let form = $(this);
+    // let data = $('#update_form').serializeArray();
+    // let test = new FormData;
+    // jQuery.each()
     let url = $(this).data('route');
    $.ajax({
        type:'POST',
@@ -14,6 +14,8 @@ $('#update_form').submit(function (e){
        processData: false,
        data:new FormData(this),
        success:function (data) {
+
+
            window.location.href = "http://nasir.test/product/";
        }
    })

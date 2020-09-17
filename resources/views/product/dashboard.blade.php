@@ -36,7 +36,7 @@
                         {{--                        <input type="hidden" name="_token" value="{{csrf_token()}}">--}}
                         {{--                        <button type="submit" class="btn btn-danger btn-sm float-right" id="deleteButton">Delete</button>--}}
                         {{--                    </form>--}}
-                        <a href="#" class="btn btn-primary btn-sm edit_modal" data-toggle="modal" data-target="#exampleModalCenter" data-route="/product/{{$product->id}}/edit">Update</a>
+                        <a href="#" class="btn btn-primary btn-sm edit_modal" data-toggle="modal" data-target="#exampleModalCenter" data-route="{{url('product/'.$product->id.'/edit')}}">Update</a>
                         {!! Form::close() !!}
                     </td>
                 </tr>

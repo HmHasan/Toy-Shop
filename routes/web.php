@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::routes();
-//Auth::routes(['register' => false]);
+
+Auth::routes(['register' => false]);
 Route::get('/', 'HomeController@index')->name('home');
 Route::resource('product','ProductController');

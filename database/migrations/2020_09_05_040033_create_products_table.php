@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('product_photo');
             $table->string('product_name');
             $table->decimal('product_price',15,2);
-            $table->json('properties');
+            $table->json('properties')->nullable();
             $table->timestamps();
         });
     }

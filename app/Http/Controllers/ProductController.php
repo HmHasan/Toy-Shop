@@ -92,7 +92,7 @@ class ProductController extends Controller
             'product_name' => 'required',
             'product_photo' => 'nullable | image | max:1999' ,
             'product_price' => 'required',
-            'properties' => 'required',
+            'product_properties' => 'nullable;',
         ]);
 
         if($request->hasFile('product_photo'))
@@ -139,6 +139,7 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
+
     {
          $product = Product::find($id);
 
@@ -151,18 +152,22 @@ class ProductController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
+//        return $id ;
 
         $validatedData = $request->validate([
             'product_id' => 'required',
             'product_name' => 'required',
             'product_photo' => 'nullable | image | max:1999' ,
             'product_price' => 'required',
-            'properties' => 'required',
+            'product_properties' => 'nullable',
+
         ]);
+
+
 
         $product = Product::find($id);
 
@@ -187,15 +192,15 @@ class ProductController extends Controller
         if($request->hasFile('product_photo'))
         {
             $product->product_photo = $fileNametoStore;
-
-
         }
 
         $product->product_name = $request->input('product_name');
         $product->product_price = $request->input('product_price');
         $product->properties = $request->input('properties');
 
+
         $product->save();
+
         return redirect()->route('product.index');
     }
 
