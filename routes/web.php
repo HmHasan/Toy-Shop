@@ -15,4 +15,4 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes(['register' => false]);
 Route::get('/', 'HomeController@index')->name('home');
-Route::resource('product','ProductController');
+Route::resource('product','ProductController')->middleware('auth');

@@ -7,7 +7,6 @@
         <thead>
            <tr>
                <th>Product Photo</th>
-               <th>Product ID</th>
                <th>Product Name</th>
                <th>Product Price</th>
                <th>Properties</th>
@@ -19,13 +18,16 @@
                 <tbody>
                 <tr>
                     <td><img src="/storage/product_photo/{{$product->product_photo}}" alt="" height="50px" width="50px"></td>
-                    <td>{{$product->product_id}}</td>
                     <td>{{$product->product_name}}</td>
                     <td>{{$product->product_price}}</td>
                     <td>
-                        @foreach($product->properties as $item)
-                            <b>{{ $item->key }}</b>: {{ $item->value}}<br />
-                        @endforeach
+                        @if (count($product->properties)>0)
+                            @foreach($product->properties as $item)
+                                <b>{{ $item->key }}</b>: {{ $item->value}}<br />
+                            @endforeach
+                        @else
+                            <b>{{'No Properties'}}</b>
+                        @endif
                     </td>
                     <td>
 
@@ -69,7 +71,7 @@
             </div>
         </div>
     </div>
-
+<div>{{$products->links()}}</div>
 @endsection
 @section('script')
     <script>

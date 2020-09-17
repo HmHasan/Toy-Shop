@@ -20,7 +20,7 @@
                        </div>
 
                    </div>
-                   <input type="file" name="product_photo" id="default-upload-btn" hidden>
+                   <input type="file" name="product_photo" id="default-upload-btn" hidden value="{{old('product_photo')}}">
                    <button onclick="defaultBtnActive()"  id="custom-upload-btn" type="button">Choose a Photo</button>
                    <small class="form-text text-danger text-center">{{$errors->first('product_photo')}}</small>
                </div>

@@ -31,10 +31,8 @@ class Product extends Model
      * @var mixed
      */
     private $product_id;
-    public function user()
-    {
-        return $this->belongsTo('App\User');
-    }
+
+
     public function getPropertiesAttribute($value)
    {
 //        $this->attributes['properties'] = json_decode($value,true);

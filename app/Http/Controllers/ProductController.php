@@ -18,7 +18,7 @@ class ProductController extends Controller
     public function index()
     {
 
-        $products = Product::all();
+        $products = Product::orderBy('created_at','desc')->paginate(5);
 
 //        foreach ($products as $test)
 //        {
@@ -88,7 +88,7 @@ class ProductController extends Controller
     {
 
         $validatedData = $request->validate([
-            'product_id' => 'required |unique:products',
+//            'product_id' => 'required |unique:products',
             'product_name' => 'required',
             'product_photo' => 'nullable | image | max:1999' ,
             'product_price' => 'required',
@@ -111,7 +111,6 @@ class ProductController extends Controller
 //        return $request->all();
 
         $product = new Product();
-        $product->product_id = $request->input('product_id');
         $product->product_photo = $fileNametoStore;
         $product->product_name = $request->input('product_name');
         $product->product_price = $request->input('product_price');
@@ -159,7 +158,6 @@ class ProductController extends Controller
 //        return $id ;
 
         $validatedData = $request->validate([
-            'product_id' => 'required',
             'product_name' => 'required',
             'product_photo' => 'nullable | image | max:1999' ,
             'product_price' => 'required',
@@ -187,7 +185,7 @@ class ProductController extends Controller
 //        return $request->all();
 
 
-        $product->product_id = $request->input('product_id');
+//        $product->product_id = $request->input('product_id');
 
         if($request->hasFile('product_photo'))
         {
